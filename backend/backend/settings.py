@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'recipe',
+    'auth',
     'user',
 ]
 
