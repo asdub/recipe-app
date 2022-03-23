@@ -46,8 +46,8 @@ class RegistrationViewSet(ModelViewSet, TokenObtainPairView):
             "token": res["access"]
         }, status=status.HTTP_201_CREATED)
 
-
-class RefreshViewSet(ViewSet, TokenRefreshView):
+#Added Model
+class RefreshViewSet(ModelViewSet, TokenRefreshView):
     permission_classes = (AllowAny,)
     http_method_names = ['post']
 

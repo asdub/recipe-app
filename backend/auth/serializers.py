@@ -1,7 +1,5 @@
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from rest_framework_simplejwt.settings import api_settings
-from django.contrib.auth.models import update_last_login
 from django.core.exceptions import ObjectDoesNotExist
 
 from user.serializers import UserSerializer
@@ -19,9 +17,6 @@ class LoginSerializer(TokenObtainPairSerializer):
         data['refresh'] = str(refresh)
         data['access'] = str(refresh.access_token)
 
-        if api_settings.UPDATE_LAST_LOGIN:
-            update_last_login(None, self.user)
-
         return data
 
 
@@ -31,7 +26,7 @@ class RegisterSerializer(UserSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'password', 'user_recipes', 'is_active', 'created', 'updated']
+        fields = ['id', 'username', 'email', 'password', 'user_recipes', 'is_active', 'created_date', 'updated_date']
 
     def create(self, validated_data):
         try:

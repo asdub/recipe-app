@@ -149,3 +149,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     )
 }
+
+SIMPLE_JWT = {
+    'UPDATE_LAST_LOGIN': False,
+}

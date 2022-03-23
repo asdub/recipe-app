@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from recipe.models import Recipe
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
@@ -40,9 +41,11 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(db_index=True, max_length=255, unique=True)
     email = models.EmailField(db_index=True, unique=True,  null=True, blank=True)
-    user_recipes = models.ManyToManyField(Recipe)
+    user_recipes = models.ManyToManyField(Recipe, default=None)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
